@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level39 — Digital Product Studio</title>
+  <meta name="description" content="Level39 is a digital product studio that turns ambitious ideas into reliable, scalable software through strategy, design, and engineering.">
+  <meta name="keywords" content="product development, web apps, mobile apps, AI products, digital studio, software engineering">
+  <meta property="og:title" content="Level39 — Digital Product Studio">
+  <meta property="og:description" content="Strategy, design, and engineering for ambitious digital products.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://level39.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://level39.com">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"DM Serif Display"', 'Georgia', 'serif'],
+            body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0a0a0a',
+            cream: '#f7f5f0',
+            warm: '#e8e4dc',
+            stone: '#9a9488',
+            ember: '#c45d3e',
+            sage: '#5a6b5a',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* Scarlet accent utilities */
+    .text-scarlet { color: #9A2219 !important; }
+    .bg-scarlet { background-color: #9A2219 !important; }
+    .bg-scarlet-light { background-color: rgba(154, 34, 25, 0.1) !important; }
+    .border-scarlet { border-color: #9A2219 !important; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes lineGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease forwards;
+      opacity: 0;
+    }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.45s; }
+    .delay-4 { animation-delay: 0.6s; }
+    .delay-5 { animation-delay: 0.75s; }
+
+    /* Scroll-triggered animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Selection */
+    ::selection {
+      background: #9A2219;
+      color: #f7f5f0;
+    }
+
+    /* Hover line animation */
+    .hover-line::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: #9A2219;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hover-line:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Service card hover */
+    .service-card {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(10, 10, 10, 0.08);
+    }
+
+    /* Case study card */
+    .case-card {
+      transition: border-color 0.3s ease;
+    }
+    .case-card:hover {
+      border-color: #9A2219;
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-ink font-body antialiased">
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-warm/60" role="navigation" aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-2xl tracking-tight text-ink" style="font-family:'Instrument Sans',system-ui,sans-serif;font-weight:700;letter-spacing:-0.02em;" aria-label="Level39 home">Level<span class="text-scarlet">39</span></a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-stone">
+        <a href="#services" class="hover-line hover:text-ink transition-colors">Services</a>
+        <a href="#work" class="hover-line hover:text-ink transition-colors">Work</a>
+        <a href="#why" class="hover-line hover:text-ink transition-colors">Why Us</a>
+        <a href="about.html" class="hover-line hover:text-ink transition-colors">About</a>
+        <a href="#contact" class="inline-flex items-center gap-2 bg-ink text-cream px-5 py-2.5 rounded-full hover:bg-ember transition-colors text-sm">
+          Start a conversation
+        </a>
+      </div>
+      <!-- Mobile menu button -->
+      <button class="md:hidden p-2" aria-label="Toggle menu" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-warm/60 bg-cream px-6 py-4 space-y-3">
+      <a href="#services" class="block text-sm font-medium text-stone hover:text-ink">Services</a>
+      <a href="#work" class="block text-sm font-medium text-stone hover:text-ink">Work</a>
+      <a href="#why" class="block text-sm font-medium text-stone hover:text-ink">Why Us</a>
+      <a href="about.html" class="block text-sm font-medium text-stone hover:text-ink">About</a>
+      <a href="#contact" class="block text-sm font-medium text-ember">Start a conversation</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <header class="min-h-screen flex items-center pt-20" role="banner">
+    <div class="max-w-6xl mx-auto px-6 py-24 md:py-32 w-full">
+      <div class="max-w-4xl">
+        <!-- Headline -->
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight animate-fade-up">
+          We build the software<br>
+          <span class="text-ember">your ambition demands.</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="mt-8 text-lg md:text-xl text-stone leading-relaxed max-w-xl animate-fade-up delay-1">
+          Level39 is a product studio that partners with founders and product teams to ship custom web, mobile, and AI-powered applications — from first sketch to long-term scale.
+        </p>
+
+        <!-- Key outcomes -->
+        <ul class="mt-10 space-y-3 animate-fade-up delay-2">
+          <li class="flex items-start gap-3 text-ink/80">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-scarlet shrink-0"></span>
+            Launch faster with a senior product team behind you
+          </li>
+          <li class="flex items-start gap-3 text-ink/80">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-scarlet shrink-0"></span>
+            Ship software that scales without costly rewrites
+          </li>
+          <li class="flex items-start gap-3 text-ink/80">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-scarlet shrink-0"></span>
+            Get strategy, design, and engineering — all under one roof
+          </li>
+          <li class="flex items-start gap-3 text-ink/80">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-scarlet shrink-0"></span>
+            Keep your product evolving long after launch day
+          </li>
+        </ul>
+
+        <!-- CTA -->
+        <div class="mt-12 animate-fade-up delay-3">
+          <a href="#contact" class="inline-flex items-center gap-3 bg-ink text-cream px-8 py-4 rounded-full text-base font-medium hover:bg-ember transition-colors duration-300 group">
+            Schedule a discovery call
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"><path stroke="#9A2219" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Decorative element -->
+      <div class="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2 w-px h-48 bg-gradient-to-b from-transparent via-stone/30 to-transparent animate-fade-in delay-4"></div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       WHAT WE DO — Overview
+       ============================================================ -->
+  <section id="services" class="py-24 md:py-32 border-t border-warm" aria-labelledby="what-we-do-heading">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal">
+        <p class="text-sm font-semibold text-scarlet uppercase tracking-widest mb-4">What we do</p>
+        <h2 id="what-we-do-heading" class="font-display text-4xl md:text-5xl tracking-tight max-w-2xl">
+          From rough idea to running product.
+        </h2>
+        <p class="mt-6 text-lg text-stone leading-relaxed max-w-2xl">
+          We handle the full arc of product development — strategy, design, engineering, and ongoing support — so you can focus on growing your business instead of managing vendors.
+        </p>
+      </div>
+
+      <!-- Subsections grid -->
+      <div class="mt-16 grid md:grid-cols-2 gap-x-16 gap-y-14">
+
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-scarlet-light flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-scarlet"></div>
+            </div>
+            <h3 class="font-display text-xl">Product Strategy & Discovery</h3>
+          </div>
+          <p class="text-stone leading-relaxed">
+            Before writing a line of code, we map your market, users, and technical landscape. You get a clear roadmap with honest trade-offs — not a 60-page document that gathers dust.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-scarlet-light flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-scarlet"></div>
+            </div>
+            <h3 class="font-display text-xl">Experience & Interface Design</h3>
+          </div>
+          <p class="text-stone leading-relaxed">
+            Great products feel effortless. Our designers craft interfaces that are intuitive, accessible, and visually sharp — reducing friction for users and support load for your team.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-scarlet-light flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-scarlet"></div>
+            </div>
+            <h3 class="font-display text-xl">Web & Mobile Engineering</h3>
+          </div>
+          <p class="text-stone leading-relaxed">
+            We build applications that hold up under real-world pressure — clean architecture, tested code, thoughtful infrastructure. The kind of codebase your future engineering team will thank you for.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-scarlet-light flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-scarlet"></div>
+            </div>
+            <h3 class="font-display text-xl">AI-Enhanced Products</h3>
+          </div>
+          <p class="text-stone leading-relaxed">
+            AI features should solve real problems, not just check a box. We design and integrate intelligent capabilities — from natural language interfaces to predictive workflows — that genuinely improve the user experience.
+          </p>
+        </div>
+
+        <div class="reveal md:col-span-2 max-w-xl">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-scarlet-light flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-scarlet"></div>
+            </div>
+            <h3 class="font-display text-xl">Ongoing Support & Evolution</h3>
+          </div>
+          <p class="text-stone leading-relaxed">
+            Products are never truly "done." We stay engaged after launch — monitoring performance, iterating on feedback, and making sure your software keeps pace with your business.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES DETAIL — How We Work
+       ============================================================ -->
+  <section class="py-24 md:py-32 bg-ink text-cream" aria-labelledby="how-we-work-heading">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal">
+        <p class="text-sm font-semibold text-scarlet uppercase tracking-widest mb-4">How we work</p>
+        <h2 id="how-we-work-heading" class="font-display text-4xl md:text-5xl tracking-tight max-w-2xl">
+          Partnership, not hand-offs.
+        </h2>
+        <p class="mt-6 text-lg text-cream/60 leading-relaxed max-w-2xl">
+          We embed with your team and think in quarters, not sprints. Every engagement starts with understanding your business deeply — because the right technical decisions depend on knowing where you're headed.
+        </p>
+      </div>
+
+      <!-- Service cards -->
+      <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="service-card bg-cream/5 border border-cream/10 rounded-2xl p-8 reveal">
+          <h3 class="font-display text-xl mb-4">Custom Web & Mobile Apps</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">
+            Whether you're launching a new product or rebuilding an existing one, we deliver production-grade applications with clean architecture that your team can maintain and extend confidently.
+          </p>
+        </div>
+
+        <div class="service-card bg-cream/5 border border-cream/10 rounded-2xl p-8 reveal">
+          <h3 class="font-display text-xl mb-4">Legacy Modernization</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">
+            Aging systems slow you down and drive up costs. We migrate, rebuild, or incrementally modernize your platform — preserving what works while replacing what holds you back.
+          </p>
+        </div>
+
+        <div class="service-card bg-cream/5 border border-cream/10 rounded-2xl p-8 reveal">
+          <h3 class="font-display text-xl mb-4">AI Feature Design & Integration</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">
+            Add intelligent capabilities to your product without the science-project risk. We identify high-impact opportunities for AI, prototype fast, and ship features that users actually rely on.
+          </p>
+        </div>
+
+        <div class="service-card bg-cream/5 border border-cream/10 rounded-2xl p-8 reveal">
+          <h3 class="font-display text-xl mb-4">Architecture Audits & Roadmapping</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">
+            Not sure if your codebase can support the next phase of growth? We assess your technical foundation, surface risks early, and deliver an actionable plan to get where you need to go.
+          </p>
+        </div>
+
+        <div class="service-card bg-cream/5 border border-cream/10 rounded-2xl p-8 reveal">
+          <h3 class="font-display text-xl mb-4">Embedded Product Teams</h3>
+          <p class="text-cream/50 leading-relaxed text-sm">
+            Need to move faster without the overhead of full-time hiring? Our senior engineers and designers integrate directly with your team — same tools, same standups, same mission.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SAMPLE ENGAGEMENTS — Case Study Teasers
+       ============================================================ -->
+  <section id="work" class="py-24 md:py-32 border-t border-warm" aria-labelledby="work-heading">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal">
+        <p class="text-sm font-semibold text-scarlet uppercase tracking-widest mb-4">Selected work</p>
+        <h2 id="work-heading" class="font-display text-4xl md:text-5xl tracking-tight">
+          Real problems. Lasting solutions.
+        </h2>
+      </div>
+
+      <div class="mt-16 grid md:grid-cols-3 gap-8">
+
+        <!-- Case 1 -->
+        <article class="case-card border border-warm rounded-2xl p-8 reveal" aria-label="Healthcare SaaS case study">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs font-semibold text-scarlet bg-scarlet-light px-3 py-1 rounded-full">Product Strategy</span>
+            <span class="text-xs font-semibold text-sage bg-sage/10 px-3 py-1 rounded-full">Engineering</span>
+          </div>
+          <h3 class="font-display text-lg mb-3">Streamlining patient intake for a healthcare SaaS platform</h3>
+          <p class="text-stone text-sm leading-relaxed">
+            A growing health-tech company needed to replace a clunky, paper-dependent onboarding flow. We redesigned the experience and rebuilt the backend — cutting provider onboarding friction significantly and improving patient data accuracy across the platform.
+          </p>
+        </article>
+
+        <!-- Case 2 -->
+        <article class="case-card border border-warm rounded-2xl p-8 reveal" aria-label="Fintech startup case study">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs font-semibold text-scarlet bg-scarlet-light px-3 py-1 rounded-full">Design</span>
+            <span class="text-xs font-semibold text-sage bg-sage/10 px-3 py-1 rounded-full">AI Integration</span>
+          </div>
+          <h3 class="font-display text-lg mb-3">Bringing intelligent risk scoring to a fintech startup</h3>
+          <p class="text-stone text-sm leading-relaxed">
+            An early-stage lending platform wanted to move beyond manual underwriting. We designed and integrated an AI-assisted risk model into their existing workflow — enabling faster decisions while keeping compliance teams confident.
+          </p>
+        </article>
+
+        <!-- Case 3 -->
+        <article class="case-card border border-warm rounded-2xl p-8 reveal" aria-label="Logistics platform case study">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs font-semibold text-scarlet bg-scarlet-light px-3 py-1 rounded-full">Legacy Modernization</span>
+            <span class="text-xs font-semibold text-sage bg-sage/10 px-3 py-1 rounded-full">Engineering</span>
+          </div>
+          <h3 class="font-display text-lg mb-3">Replacing a brittle logistics system with a modern platform</h3>
+          <p class="text-stone text-sm leading-relaxed">
+            A mid-market logistics company was running critical operations on a 12-year-old monolith. We migrated them to a modular, cloud-native architecture — simplifying operations and unlocking features their old system could never support.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY LEVEL39 — Differentiation
+       ============================================================ -->
+  <section id="why" class="py-24 md:py-32 bg-warm/40" aria-labelledby="why-heading">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal max-w-2xl">
+        <p class="text-sm font-semibold text-scarlet uppercase tracking-widest mb-4">Why Level39</p>
+        <h2 id="why-heading" class="font-display text-4xl md:text-5xl tracking-tight">
+          Built different. On purpose.
+        </h2>
+        <p class="mt-6 text-lg text-stone leading-relaxed">
+          There's no shortage of agencies. Here's what sets us apart — and why teams keep working with us year after year.
+        </p>
+      </div>
+
+      <div class="mt-16 grid md:grid-cols-2 gap-x-16 gap-y-12">
+
+        <div class="reveal">
+          <h3 class="font-display text-lg mb-2 font-bold">Senior talent, every engagement.</h3>
+          <p class="text-stone leading-relaxed text-sm">
+            No junior bench. Every person on your project is a seasoned engineer or designer who has shipped real products at scale. You get expertise from day one, not a learning curve.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <h3 class="font-display text-lg mb-2 font-bold">Product thinking built in.</h3>
+          <p class="text-stone leading-relaxed text-sm">
+            We don't just write code to spec. We challenge assumptions, surface edge cases, and help you make decisions that serve your users and your business — before they become expensive to fix.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <h3 class="font-display text-lg mb-2 font-bold">Architecture that ages well.</h3>
+          <p class="text-stone leading-relaxed text-sm">
+            We build for the next two years, not just the next two weeks. Clean, modular systems that your future team can understand, extend, and maintain without calling us back.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <h3 class="font-display text-lg mb-2 font-bold">Transparent by default.</h3>
+          <p class="text-stone leading-relaxed text-sm">
+            You'll always know where your project stands. We communicate early and often — sharing progress, surfacing blockers, and adjusting course together when priorities shift.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <h3 class="font-display text-lg mb-2 font-bold">Comfortable in complex domains.</h3>
+          <p class="text-stone leading-relaxed text-sm">
+            Healthcare, finance, logistics, government — we've worked in regulated and high-stakes environments. We understand the constraints and build accordingly.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <h3 class="font-display text-lg mb-2 font-bold">Long-term partners, not vendors.</h3>
+          <p class="text-stone leading-relaxed text-sm">
+            Our best client relationships span years. We invest in understanding your business so deeply that we can anticipate what you need next — not just react to tickets.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA — Let's Talk
+       ============================================================ -->
+  <section id="contact" class="py-24 md:py-32 bg-ink text-cream" aria-labelledby="contact-heading">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="reveal max-w-2xl mx-auto">
+        <h2 id="contact-heading" class="font-display text-4xl md:text-6xl tracking-tight">
+          Got a big idea?<br><span class="text-ember">Let's make it real.</span>
+        </h2>
+        <p class="mt-6 text-lg text-cream/60 leading-relaxed">
+          Whether you're starting from scratch, rebuilding something that's outgrown its foundation, or picking up a half-finished product — we'd like to hear about it.
+        </p>
+        <div class="mt-10">
+          <a href="mailto:hello@level39.com" class="inline-flex items-center gap-3 bg-ember text-cream px-10 py-4 rounded-full text-base font-medium hover:bg-ember/90 transition-colors duration-300 group">
+            Start a conversation
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"><path stroke="#9A2219" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-cream/40">
+          No sales scripts. Just a practical conversation with a senior product partner.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="bg-ink text-cream/40 border-t border-cream/10 py-8" role="contentinfo">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+      <p>&copy; 2026 Level39. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="mailto:hello@level39.com" class="hover:text-cream transition-colors">hello@level39.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL REVEAL SCRIPT
+       ============================================================ -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

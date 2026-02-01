@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Level39</title>
+  <meta name="description" content="Contact information and company details for Level39, LLC.">
+  <meta property="og:title" content="About — Level39">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://level39.com/about">
+  <link rel="canonical" href="https://level39.com/about">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"DM Serif Display"', 'Georgia', 'serif'],
+            body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0a0a0a',
+            cream: '#f7f5f0',
+            warm: '#e8e4dc',
+            stone: '#9a9488',
+            ember: '#c45d3e',
+            sage: '#5a6b5a',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .text-scarlet { color: #9A2219 !important; }
+    .bg-scarlet { background-color: #9A2219 !important; }
+
+    ::selection {
+      background: #9A2219;
+      color: #f7f5f0;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-ink font-body antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-warm/60" role="navigation" aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-2xl tracking-tight text-ink" style="font-family:'Instrument Sans',system-ui,sans-serif;font-weight:700;letter-spacing:-0.02em;" aria-label="Level39 home">Level<span class="text-scarlet">39</span></a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-stone">
+        <a href="index.html#services" class="hover:text-ink transition-colors">Services</a>
+        <a href="index.html#work" class="hover:text-ink transition-colors">Work</a>
+        <a href="index.html#why" class="hover:text-ink transition-colors">Why Us</a>
+        <a href="about.html" class="text-ink transition-colors">About</a>
+        <a href="index.html#contact" class="inline-flex items-center gap-2 bg-ink text-cream px-5 py-2.5 rounded-full hover:bg-ember transition-colors text-sm">
+          Start a conversation
+        </a>
+      </div>
+      <button class="md:hidden p-2" aria-label="Toggle menu" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-warm/60 bg-cream px-6 py-4 space-y-3">
+      <a href="index.html#services" class="block text-sm font-medium text-stone hover:text-ink">Services</a>
+      <a href="index.html#work" class="block text-sm font-medium text-stone hover:text-ink">Work</a>
+      <a href="index.html#why" class="block text-sm font-medium text-stone hover:text-ink">Why Us</a>
+      <a href="about.html" class="block text-sm font-medium text-ink">About</a>
+      <a href="index.html#contact" class="block text-sm font-medium text-ember">Start a conversation</a>
+    </div>
+  </nav>
+
+  <!-- About content -->
+  <main class="min-h-screen pt-32 pb-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="font-display text-4xl md:text-5xl tracking-tight mb-12">About</h1>
+
+      <div class="max-w-xl space-y-8">
+        <p class="text-lg text-stone leading-relaxed">
+          For more information, please contact us at
+          <a href="mailto:hello@level39.com" class="text-ink underline underline-offset-4 hover:text-scarlet transition-colors">hello@level39.com</a>
+          or by phone
+          <a href="tel:+19177447617" class="text-ink underline underline-offset-4 hover:text-scarlet transition-colors">+1-917-744-7617</a>.
+        </p>
+
+        <div class="border-t border-warm pt-8">
+          <p class="font-bold text-ink">LEVEL39, LLC</p>
+          <address class="not-italic text-stone leading-relaxed mt-2">
+            314 Foreside Rd<br>
+            Falmouth, ME 04105
+          </address>
+          <p class="text-stone mt-4">D-U-N-S Number: 80-013-1463</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-cream/40 border-t border-cream/10 py-8" role="contentinfo">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+      <p>&copy; 2026 Level39. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="mailto:hello@level39.com" class="hover:text-cream transition-colors">hello@level39.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
